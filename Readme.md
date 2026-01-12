@@ -1,44 +1,59 @@
 using System;
 
-namespace Task3
+class ArithmeticCalculator
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        char continueChoice = 'Y';
+
+        while (char.ToUpper(continueChoice) == 'Y')
         {
-            // 1. Declare and initialize the array
-            int[] numbers = { 3, 7, 12, 19, 21, 25, 30 };
+            Console.WriteLine("Press any following key to perform an arithmetic operation:");
+            Console.WriteLine("1 - Addition");
+            Console.WriteLine("2 - Subtraction");
+            Console.WriteLine("3 - Multiplication");
+            Console.WriteLine("4 - Division");
 
-            // 2. Ask the user for input
-            Console.Write("Enter a number to search for: ");
-            int target = int.Parse(Console.ReadLine());
+            int choice = int.Parse(Console.ReadLine());
 
-            // This boolean variable tracks if we found the number
-            bool found = false;
+            Console.Write("Enter Value 1: ");
+            double val1 = double.Parse(Console.ReadLine());
 
-            // 3. Use a for loop to go through the array elements
-            for (int i = 0; i < numbers.Length; i++)
+            Console.Write("Enter Value 2: ");
+            double val2 = double.Parse(Console.ReadLine());
+
+            // Switch-case to route execution based on choice
+            switch (choice)
             {
-                // 4. Compare user input to each element
-                if (numbers[i] == target)
-                {
-                    Console.WriteLine($"Number found at position {i}!");
-                    found = true;
-                    
-                    // 5. Use the break statement to stop the loop immediately
-                    break; 
-                }
+                case 1:
+                    Console.WriteLine($"{val1} + {val2} = {Add(val1, val2)}");
+                    break;
+                case 2:
+                    Console.WriteLine($"{val1} - {val2} = {Subtract(val1, val2)}");
+                    break;
+                case 3:
+                    Console.WriteLine($"{val1} * {val2} = {Multiply(val1, val2)}");
+                    break;
+                case 4:
+                    if (val2 != 0)
+                        Console.WriteLine($"{val1} / {val2} = {Divide(val1, val2)}");
+                    else
+                        Console.WriteLine("Error: Division by zero is not allowed.");
+                    break;
+                default:
+                    Console.WriteLine("Invalid selection.");
+                    break;
             }
 
-            // 6. If the loop completes with no match
-            if (!found)
-            {
-                Console.WriteLine("Number not found in the list.");
-            }
-
-            // Keep the console window open
-            Console.WriteLine("\nPress any key to exit...");
-            Console.ReadKey();
+            Console.Write("Do you want to continue again (Y/N)? ");
+            continueChoice = Console.ReadKey().KeyChar;
+            Console.WriteLine("\n");
         }
     }
+
+    // Separate Methods for Core Logic
+    static double Add(double a, double b) => a + b;
+    static double Subtract(double a, double b) => a - b;
+    static double Multiply(double a, double b) => a * b;
+    static double Divide(double a, double b) => a / b;
 }
