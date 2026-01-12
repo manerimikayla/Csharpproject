@@ -65,15 +65,3 @@ class ReportCardApp
             {
                 if (int.Parse(arr[j, 4]) < int.Parse(arr[j + 1, 4]))
                 {
-                    // Swap entire rows
-                    for (int k = 0; k < 5; k++)
-                    {
-                        string temp = arr[j, k];
-                        arr[j, k] = arr[j + 1, k];
-                        arr[j + 1, k] = temp;
-                    }
-                }
-            }
-        }
-    }
-}
