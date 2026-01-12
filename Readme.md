@@ -1,37 +1,44 @@
 using System;
 
-namespace ArrayAssignment
+namespace Task3
 {
-    class Task2
+    class Program
     {
         static void Main(string[] args)
         {
-            // 1. Declare and Initialize the Jagged Array
-            // Row 0: Even numbers | Row 1: Odd numbers
-            int[][] numberMatrix = new int[][]
+            // 1. Declare and initialize the array
+            int[] numbers = { 3, 7, 12, 19, 21, 25, 30 };
+
+            // 2. Ask the user for input
+            Console.Write("Enter a number to search for: ");
+            int target = int.Parse(Console.ReadLine());
+
+            // This boolean variable tracks if we found the number
+            bool found = false;
+
+            // 3. Use a for loop to go through the array elements
+            for (int i = 0; i < numbers.Length; i++)
             {
-                new int[] { 2, 4, 6, 8, 10 }, // Row 0
-                new int[] { 1, 3, 5, 7, 9 }   // Row 1
-            };
+                // 4. Compare user input to each element
+                if (numbers[i] == target)
+                {
+                    Console.WriteLine($"Number found at position {i}!");
+                    found = true;
+                    
+                    // 5. Use the break statement to stop the loop immediately
+                    break; 
+                }
+            }
 
-            Console.WriteLine("The number matrix has been initialized.");
+            // 6. If the loop completes with no match
+            if (!found)
+            {
+                Console.WriteLine("Number not found in the list.");
+            }
 
-            // 2. Extract the Digits based on Clues
-            // Digit 1: Row 1, Index 3 (Value: 7)
-            int digit1 = numberMatrix[1][3];
-
-            // Digit 2: Row 0, Index 0 (Value: 2)
-            int digit2 = numberMatrix[0][0];
-
-            // Digit 3: Row 1, Index 4 (Value: 9)
-            int digit3 = numberMatrix[1][4];
-
-            // 3. Combine the Digits (The Key)
-            // We concatenate them as strings to avoid mathematical addition
-            string finalKey = $"{digit1}{digit2}{digit3}";
-
-            // 4. Final Output
-            Console.WriteLine($"The password is: {finalKey}");
+            // Keep the console window open
+            Console.WriteLine("\nPress any key to exit...");
+            Console.ReadKey();
         }
     }
 }
